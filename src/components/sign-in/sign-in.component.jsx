@@ -1,16 +1,17 @@
-import React from "react";
+import React from 'react';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
-import FormInput from "../form-input/form-input.component";
-import CustomButton from "../custom-button/custom-button.component";
-import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
+import FormInput from '../form-input/form-input.component';
+import CustomButton from '../custom-button/custom-button.component';
 
-import "./sign-in.stylesheet.scss";
+import './sign-in.stylesheet.scss';
+
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     };
   }
 
@@ -21,9 +22,9 @@ class SignIn extends React.Component {
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: "", password: "" });
+      this.setState({ email: '', password: '' });
     } catch (error) {
-      console.log("Sing In Failed", error);
+      console.log('Sing In Failed', error);
     }
   };
 
@@ -35,28 +36,28 @@ class SignIn extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="sign-in">
+      <div className='sign-in'>
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit}>
           <FormInput
-            type="email"
-            name="email"
+            type='email'
+            name='email'
             required
             value={email}
             handleChange={this.handleChange}
-            label="Email"
+            label='Email'
           />
           <FormInput
-            type="password"
-            name="password"
+            type='password'
+            name='password'
             required
             value={password}
             handleChange={this.handleChange}
-            label="Password"
+            label='Password'
           />
-          <div className="buttons">
-            <CustomButton type="submit">Sign In</CustomButton>
+          <div className='buttons'>
+            <CustomButton type='submit'>Sign In</CustomButton>
             <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
               Sign In with Google
             </CustomButton>
